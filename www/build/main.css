@@ -25207,7 +25207,7 @@ page-lesson ruby rt {
   font-size: 1rem;
 }
 
-page-lesson .patronOracion ion-list ion-item h3 {
+page-lesson .patronOracion ion-list ion-item h3, page-lesson .ejemplosOraciones ion-list ion-item h3 {
   overflow: inherit;
   text-overflow: inherit;
   white-space: normal;

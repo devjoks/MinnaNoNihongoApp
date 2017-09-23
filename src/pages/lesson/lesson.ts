@@ -12,7 +12,8 @@ import { MnnServiceProvider } from '../../providers/mnn-service/mnn-service';
 export class LessonPage {
 
   private MinnaData: MnnServiceProvider;
-  private idioma: string = "Japones";
+  private patronIdioma: string = "Japones";
+  private ejemploIdioma: string = "Japones";
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,

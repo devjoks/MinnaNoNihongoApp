@@ -3,26 +3,87 @@
     "patron_oracion":{
         "oraciones": [
             {
-                "patron": "わたしはマイク・ミラーです。"
+                "patron": "わたしはマイク・ミラーです。",
+                "espanol": "Yo soy Mike Miller."
             }, {
-                "patron": "サントスさんは学生じゃありません。"
+                "patron": "サントスさんは学生じゃありません。",
+                "espanol": "El Sr. Santos no es estudiante."
             }, {
-                "patron": "ミラーさんは会社員ですか。"
+                "patron": "ミラーさんは会社員ですか。",
+                "espanol": "¿Es el Sr. Miller empleado de una empresa?"
             }, {
-                "patron": "サントさんも会社員です。"
-            }],
-            "kanjis": {
-                "disponibles": 2,
-                "kanji":[
-                    {
-                        "kanji": "学生",
-                        "furigana": "がくせい"
-                    },
-                    {
-                        "kanji": "会社員",
-                        "furigana": "かいしゃいん"
-                    }
-                ]
+                "patron": "サントさんも会社員です。",
+                "espanol": "El Sr. Santos también es empleado de una empresa."
             }
-        }
+        ],
+        "ejemplos":[
+            {
+                "pregunta":"[あなたは]　マイク・ミラーさんですか。",
+                "respuesta": "．．．はい、[わたしは]　マイク・ミラーです。",
+                "preguntaEsp":"¿Es [Ud.] Mike Miller?",
+                "respuestaEsp": "．．．Sí, soy Mike Miller."
+            },
+            {
+                "pregunta":"ミラさんは学生ですか。",
+                "respuesta":"．．．いいえ、[わたしは]　学生じゃありません。会社員です。",
+                "preguntaEsp":"¿Es Ud. estudiante, Sr. Miller?",
+                "respuestaEsp": "No, [yo] no soy estudiante. Soy empleado de una empresa."
+            },
+            {
+                "pregunta":"ワンさんはエンジニアですか。",
+                "respuesta":"．．．いいえ、ワンさんはエンジニアじゃありません。医者です。",
+                "preguntaEsp":"¿Es el Sr. Wang ingeniero?",
+                "respuestaEsp": "．．．No, el Sr. Wang no es ingeniero. Es médico."
+            },
+            {
+                "pregunta":"あの方はどなたですか。",
+                "respuesta":"．．．ワットさんです。さくら大学の先生です。",
+                "preguntaEsp":"¿Quién es aquella persona?",
+                "respuestaEsp": "．．．Es el Sr. Watt. Es profesor de la Universidad Sakura."
+            },
+            {
+                "pregunta":"テレサちゃんは何歳ですか。",
+                "respuesta":"．．．９歳です。",
+                "preguntaEsp":"¿Cuántos años tiene Teresa?",
+                "respuestaEsp": "．．．Tiene 9 años."
+            }
+        ]
+    },
+    "kanjis": {
+        "disponibles": 8,
+        "kanji":[
+            {
+                "kanji": "学生",
+                "furigana": "がくせい"
+            },
+            {
+                "kanji": "会社員",
+                "furigana": "かいしゃいん"
+            },
+            {
+                "kanji": "医者",
+                "furigana": "いしゃ"
+            },
+            {
+                "kanji": "方",
+                "furigana": "かた"
+            },
+            {
+                "kanji": "大学",
+                "furigana": "だいがく"
+            },
+            {
+                "kanji": "先生",
+                "furigana": "せんせい"
+            },
+            {
+                "kanji": "何",
+                "furigana": "なん"
+            },
+            {
+                "kanji": "歳",
+                "furigana": "さい"
+            }
+        ]
+    }
 }

@@ -37,16 +37,24 @@ export class MnnServiceProvider {
 
   getPatron(){
     this._patron = this._mnnData["patron_oracion"];
-    this._kanji = this._mnnData["patron_oracion"].kanjis;
+    this._kanji = this._mnnData["kanjis"];
     this.setFurigana();
   }
   
 
   setFurigana(){
+    var KanFur: string;
     for (let oracion of this._patron["oraciones"]){
-      for (let kanji of this._kanji["kanji"]){
-        var KanFur = "<ruby> " + kanji.kanji + " <rt> "+ kanji.furigana +" </rt> </ruby>";
+      for (let kanji of this._mnnData["kanjis"].kanji){
+        KanFur = "<ruby> " + kanji.kanji + " <rt> "+ kanji.furigana +" </rt> </ruby>";
         oracion["patron"] = oracion["patron"].replace(kanji.kanji,KanFur, 'gi');
+      }
+    }
+    for (let ejemplo of this._patron["ejemplos"]){
+      for (let kanji of this._mnnData["kanjis"].kanji){
+        KanFur = "<ruby> " + kanji.kanji + " <rt> "+ kanji.furigana +" </rt> </ruby>";
+        ejemplo["pregunta"] = ejemplo["pregunta"].replace(kanji.kanji,KanFur, 'gi');
+        ejemplo["respuesta"] = ejemplo["respuesta"].replace(kanji.kanji,KanFur, 'gi');
       }
     }
   }

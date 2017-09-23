@@ -88,16 +88,26 @@ var MnnServiceProvider = (function () {
     };
     MnnServiceProvider.prototype.getPatron = function () {
         this._patron = this._mnnData["patron_oracion"];
-        this._kanji = this._mnnData["patron_oracion"].kanjis;
+        this._kanji = this._mnnData["kanjis"];
         this.setFurigana();
     };
     MnnServiceProvider.prototype.setFurigana = function () {
+        var KanFur;
         for (var _i = 0, _a = this._patron["oraciones"]; _i < _a.length; _i++) {
             var oracion = _a[_i];
-            for (var _b = 0, _c = this._kanji["kanji"]; _b < _c.length; _b++) {
+            for (var _b = 0, _c = this._mnnData["kanjis"].kanji; _b < _c.length; _b++) {
                 var kanji = _c[_b];
-                var KanFur = "<ruby> " + kanji.kanji + " <rt> " + kanji.furigana + " </rt> </ruby>";
+                KanFur = "<ruby> " + kanji.kanji + " <rt> " + kanji.furigana + " </rt> </ruby>";
                 oracion["patron"] = oracion["patron"].replace(kanji.kanji, KanFur, 'gi');
+            }
+        }
+        for (var _d = 0, _e = this._patron["ejemplos"]; _d < _e.length; _d++) {
+            var ejemplo = _e[_d];
+            for (var _f = 0, _g = this._mnnData["kanjis"].kanji; _f < _g.length; _f++) {
+                var kanji = _g[_f];
+                KanFur = "<ruby> " + kanji.kanji + " <rt> " + kanji.furigana + " </rt> </ruby>";
+                ejemplo["pregunta"] = ejemplo["pregunta"].replace(kanji.kanji, KanFur, 'gi');
+                ejemplo["respuesta"] = ejemplo["respuesta"].replace(kanji.kanji, KanFur, 'gi');
             }
         }
     };
@@ -105,9 +115,10 @@ var MnnServiceProvider = (function () {
 }());
 MnnServiceProvider = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
 ], MnnServiceProvider);
 
+var _a;
 //# sourceMappingURL=mnn-service.js.map
 
 /***/ }),
@@ -326,7 +337,8 @@ var LessonPage = (function () {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this._mnnData = _mnnData;
-        this.idioma = "Japones";
+        this.patronIdioma = "Japones";
+        this.ejemploIdioma = "Japones";
         this.MinnaData = _mnnData;
         this.MinnaData.load();
     }
@@ -335,14 +347,13 @@ var LessonPage = (function () {
 LessonPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-lesson',template:/*ion-inline-start:"C:\Users\Usuario\Documents\GitProject\MinnaNoNihongoApp\src\pages\lesson\lesson.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>みんなの日本語</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h3>Lección {{ MinnaData._mnnData.leccion }}</h3>\n  <div class="patronOracion">\n    <h4>\n      Patrones de oraciones\n    </h4>\n    <div>\n      <ion-segment [(ngModel)]="idioma" >\n        <ion-segment-button value="Japones">\n          Japonés\n        </ion-segment-button>\n        <ion-segment-button value="Espanol">\n          Español\n        </ion-segment-button>\n      </ion-segment>\n    </div>\n    <div [ngSwitch]="idioma">\n      <ion-list *ngSwitchCase="\'Japones\'" >\n        <ion-item *ngFor = "let leccion of MinnaData._patron.oraciones">\n          <h3 [innerHTML]="leccion.patron"></h3>\n        </ion-item>\n      </ion-list>\n    \n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Usuario\Documents\GitProject\MinnaNoNihongoApp\src\pages\lesson\lesson.html"*/,
+        selector: 'page-lesson',template:/*ion-inline-start:"C:\Users\Usuario\Documents\GitProject\MinnaNoNihongoApp\src\pages\lesson\lesson.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>みんなの日本語</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h3>Lección {{ MinnaData._mnnData.leccion }}</h3>\n  <div class="patronOracion">\n    <h4>\n      Patrones de oraciones\n    </h4>\n    <div>\n      <ion-segment [(ngModel)]="patronIdioma" >\n        <ion-segment-button value="Japones">\n          Japonés\n        </ion-segment-button>\n        <ion-segment-button value="Espanol">\n          Español\n        </ion-segment-button>\n      </ion-segment>\n    </div>\n    <div [ngSwitch]="patronIdioma">\n      <ion-list *ngSwitchCase="\'Japones\'" >\n        <ion-item *ngFor = "let leccion of MinnaData._patron.oraciones">\n          <h3 [innerHTML]="leccion.patron"></h3>\n        </ion-item>\n      </ion-list>\n    </div>\n    <div [ngSwitch]="patronIdioma">\n      <ion-list *ngSwitchCase="\'Espanol\'" >\n        <ion-item *ngFor = "let leccion of MinnaData._patron.oraciones">\n          <h3 [innerHTML]="leccion.espanol"></h3>\n        </ion-item>\n      </ion-list>\n    </div>\n  </div>\n\n  <div class="ejemplosOraciones">\n      <h4>\n        Oraciones de ejemplo\n      </h4>\n      <div>\n        <ion-segment [(ngModel)]="ejemploIdioma" >\n          <ion-segment-button value="Japones">\n            Japonés\n          </ion-segment-button>\n          <ion-segment-button value="Espanol">\n            Español\n          </ion-segment-button>\n        </ion-segment>\n      </div>\n      <div [ngSwitch]="ejemploIdioma">\n        <ion-list *ngSwitchCase="\'Japones\'" >\n          <ion-item *ngFor = "let ejemplo of MinnaData._patron.ejemplos">\n            <h3 [innerHTML]="ejemplo.pregunta"></h3>\n            <h3 [innerHTML]="ejemplo.respuesta"></h3>\n          </ion-item>\n        </ion-list>\n      </div>\n      <div [ngSwitch]="ejemploIdioma">\n        <ion-list *ngSwitchCase="\'Espanol\'" >\n          <ion-item *ngFor = "let ejemplo of MinnaData._patron.ejemplos">\n            <h3 [innerHTML]="ejemplo.preguntaEsp"></h3>\n            <h3 [innerHTML]="ejemplo.respuestaEsp"></h3>\n          </ion-item>\n        </ion-list>\n      </div>\n    </div>\n    \n</ion-content>\n'/*ion-inline-end:"C:\Users\Usuario\Documents\GitProject\MinnaNoNihongoApp\src\pages\lesson\lesson.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_2__providers_mnn_service_mnn_service__["a" /* MnnServiceProvider */]]
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_mnn_service_mnn_service__["a" /* MnnServiceProvider */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_mnn_service_mnn_service__["a" /* MnnServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_mnn_service_mnn_service__["a" /* MnnServiceProvider */]) === "function" && _c || Object])
 ], LessonPage);
 
+var _a, _b, _c;
 //# sourceMappingURL=lesson.js.map
 
 /***/ })

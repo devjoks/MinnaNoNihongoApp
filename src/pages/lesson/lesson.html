@@ -14,7 +14,7 @@
       Patrones de oraciones
     </h4>
     <div>
-      <ion-segment [(ngModel)]="idioma" >
+      <ion-segment [(ngModel)]="patronIdioma" >
         <ion-segment-button value="Japones">
           Japonés
         </ion-segment-button>
@@ -23,13 +23,52 @@
         </ion-segment-button>
       </ion-segment>
     </div>
-    <div [ngSwitch]="idioma">
+    <div [ngSwitch]="patronIdioma">
       <ion-list *ngSwitchCase="'Japones'" >
         <ion-item *ngFor = "let leccion of MinnaData._patron.oraciones">
           <h3 [innerHTML]="leccion.patron"></h3>
         </ion-item>
       </ion-list>
-    
+    </div>
+    <div [ngSwitch]="patronIdioma">
+      <ion-list *ngSwitchCase="'Espanol'" >
+        <ion-item *ngFor = "let leccion of MinnaData._patron.oraciones">
+          <h3 [innerHTML]="leccion.espanol"></h3>
+        </ion-item>
+      </ion-list>
     </div>
   </div>
+
+  <div class="ejemplosOraciones">
+      <h4>
+        Oraciones de ejemplo
+      </h4>
+      <div>
+        <ion-segment [(ngModel)]="ejemploIdioma" >
+          <ion-segment-button value="Japones">
+            Japonés
+          </ion-segment-button>
+          <ion-segment-button value="Espanol">
+            Español
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+      <div [ngSwitch]="ejemploIdioma">
+        <ion-list *ngSwitchCase="'Japones'" >
+          <ion-item *ngFor = "let ejemplo of MinnaData._patron.ejemplos">
+            <h3 [innerHTML]="ejemplo.pregunta"></h3>
+            <h3 [innerHTML]="ejemplo.respuesta"></h3>
+          </ion-item>
+        </ion-list>
+      </div>
+      <div [ngSwitch]="ejemploIdioma">
+        <ion-list *ngSwitchCase="'Espanol'" >
+          <ion-item *ngFor = "let ejemplo of MinnaData._patron.ejemplos">
+            <h3 [innerHTML]="ejemplo.preguntaEsp"></h3>
+            <h3 [innerHTML]="ejemplo.respuestaEsp"></h3>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+    
 </ion-content>
