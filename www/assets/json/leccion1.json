@@ -1,0 +1,28 @@
+{
+    "leccion": 1,
+    "patron_oracion":{
+        "oraciones": [
+            {
+                "patron": "わたしはマイク・ミラーです。"
+            }, {
+                "patron": "サントスさんは学生じゃありません。"
+            }, {
+                "patron": "ミラーさんは会社員ですか。"
+            }, {
+                "patron": "サントさんも会社員です。"
+            }],
+            "kanjis": {
+                "disponibles": 2,
+                "kanji":[
+                    {
+                        "kanji": "学生",
+                        "furigana": "がくせい"
+                    },
+                    {
+                        "kanji": "会社員",
+                        "furigana": "かいしゃいん"
+                    }
+                ]
+            }
+        }
+}
